@@ -6,7 +6,7 @@ import db from "./utils/db/index.js";
 import keystore from "./utils/keystore/index.js";
 
 const server = app.listen(process.env.PORT, () => {
-	logger.info(`Running on port ${process.env.PORT}`);
+	logger.info(`${process.env.SERVICE_NAME} running on port ${process.env.PORT}`);
 });
 
 process.on("SIGTERM", shutdown);

@@ -37,6 +37,7 @@ export default (err, _req, res, _next) => {
 
 	res.status(statusCode).json({
 		success: false,
+		service: process.env.SERVICE_NAME,
 		error
 	});
 };

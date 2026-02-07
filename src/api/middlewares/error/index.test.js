@@ -50,4 +50,11 @@ describe("Error Middleware", () => {
 		expect(res.status).to.equal(401);
 		expect(res.body.error.data).to.be.undefined;
 	});
+
+	it("should include service name at top level", async () => {
+		const app = createApp(boom.badRequest());
+		const res = await request(app).get("/");
+
+		expect(res.body.service).to.equal(process.env.SERVICE_NAME);
+	});
 });
