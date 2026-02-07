@@ -1,0 +1,14 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+
+test:
+  interruptible: true
+  timeout: 10 minutes
+  script:
+    - docker compose run --rm app bash -c 'yarn && yarn lint && yarn mocha'
