@@ -11,11 +11,12 @@
   "scripts": {
     "prepare": "husky",
     "start": "node src/index.js",
-    "start:docker": "docker compose run --rm -p 3000:3000 app yarn node src/index.js",
+    "start:docker": "docker compose run --rm -p 3000:3000 app yarn start",
     "start:watch": "nodemon src",
     "lint": "yarn eslint src",
     "test": "docker compose run --rm app bash -c 'yarn && yarn mocha'",
-    "migrate": "knex migrate:latest"
+    "migrate": "knex migrate:latest",
+    "migrate:docker": "docker compose run --rm app yarn migrate"
   },
   "dependencies": {
     "@hapi/boom": "^10.0.1",

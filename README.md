@@ -2,6 +2,22 @@
 
 A Node.js microservice boilerplate with Express 5, PostgreSQL, and Redis.
 
+## Getting Started
+
+Copy environment variables, install dependencies, run migrations, and start:
+```bash
+cp .env.test .env
+yarn install
+yarn migrate:docker
+yarn start:docker
+```
+
+Run lint and tests:
+```bash
+yarn lint
+yarn test
+```
+
 ## Middlewares
 
 ### Authorization
