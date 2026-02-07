@@ -1,0 +1,4 @@
+require: mocha-setup.js
+spec: "src/**/*.test.js"
+recursive: true
+exit: true
