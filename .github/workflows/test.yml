@@ -1,0 +1,22 @@
+name: Test
+
+on:
+  workflow_call:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hoverkraft-tech/compose-action@v2.0.1
+        with:
+          up-flags: --wait
+      - run: docker compose run --rm app bash -c 'yarn && yarn lint && yarn mocha'

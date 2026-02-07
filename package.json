@@ -7,7 +7,9 @@
   "engines": {
     "node": ">=20.0.0"
   },
+  "packageManager": "yarn@1.22.22",
   "scripts": {
+    "prepare": "husky",
     "start": "node src/index.js",
     "start:docker": "docker compose run --rm -p 3000:3000 app yarn node src/index.js",
     "start:watch": "nodemon src",
@@ -28,6 +30,7 @@
   "devDependencies": {
     "chai": "^6.2.2",
     "eslint": "^9.39.2",
+    "husky": "^9.1.7",
     "mocha": "^11.7.5",
     "nock": "^14.0.10",
     "nodemon": "^3.1.11",
