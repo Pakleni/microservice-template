@@ -1,24 +1,7 @@
-/* eslint-disable no-console */
+import pino from "pino";
 
-/**
- * Logger utility
- * Basic console wrapper - swap implementation for production (e.g., pino)
- */
-const logger = {
-	/**
-	 * Log info message
-	 * @param {...any} args
-	 */
-	info: (...args) => {
-		console.log(...args);
-	},
-	/**
-	 * Log error
-	 * @param {Error} error
-	 */
-	error: (error) => {
-		console.error(error);
-	}
-};
+const logger = pino({
+	level: process.env.LOG_LEVEL
+});
 
 export default logger;
