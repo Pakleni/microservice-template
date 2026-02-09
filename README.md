@@ -42,6 +42,10 @@ Redis-backed rate limiting with configurable window and max requests. Health end
 
 Integration tests run against real PostgreSQL and Redis via Docker Compose. Includes ready-to-use GitHub Actions and GitLab CI pipelines.
 
+### Prometheus Metrics
+
+Exposes Prometheus metrics at `/metrics`. Includes default Node.js runtime metrics (memory, CPU, event loop, GC).
+
 ### Health Checks & Graceful Shutdown
 
 Implements health checks and graceful shutdown per [Express documentation](https://expressjs.com/en/advanced/healthcheck-graceful-shutdown.html). Liveness (`/health`) and readiness (`/health/ready`) probes verify database and Redis connectivity. On `SIGTERM`/`SIGINT`, closes the HTTP server, drains connections, and exits cleanly.

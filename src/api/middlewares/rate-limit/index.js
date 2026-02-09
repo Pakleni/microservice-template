@@ -9,7 +9,7 @@ const limiter = rateLimit({
 	standardHeaders: "draft-8",
 	legacyHeaders: false,
 	ipv6Subnet: 56,
-	skip: (req) => req.path.startsWith("/health"),
+	skip: (req) => req.path.startsWith("/health") || req.path === "/metrics",
 	store: new RedisStore({
 		sendCommand: (command, ...args) =>
 			keystore.call(command, ...args),
