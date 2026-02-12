@@ -8,8 +8,10 @@ services:
       - POSTGRES_URL=postgres://postgres:example@db:5432/postgres?sslmode=disable
       - REDIS_URL=redis://redis:6379
     depends_on:
-      - db
-      - redis
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     profiles:
       - local
 
@@ -18,10 +20,20 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: example
+    healthcheck:
+      test: pg_isready -U postgres
+      interval: 5s
+      timeout: 3s
+      retries: 5
 
   redis:
     image: 'redislabs/rejson:latest'
     command: redis-server --save 900 1 --save 300 10 --save 60 10000 --loadmodule /usr/lib/redis/modules/rejson.so
+    healthcheck:
+      test: redis-cli ping
+      interval: 5s
+      timeout: 3s
+      retries: 5
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
